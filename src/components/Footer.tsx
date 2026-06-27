@@ -13,7 +13,7 @@ export default function Footer({ onNavigate }: FooterProps) {
         {/* Col 1: SNT branding */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 text-white">
-            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold">
+            <div className="w-8 h-8 rounded-lg bg-[#1b4332] flex items-center justify-center text-white font-bold">
               <Landmark className="w-4.5 h-4.5" />
             </div>
             <span className="font-bold text-base">СНТ «Альбатрос»</span>
@@ -36,7 +36,7 @@ export default function Footer({ onNavigate }: FooterProps) {
 
         {/* Col 3: Legals & FZ-217 */}
         <div className="space-y-4">
-          <div className="flex items-center gap-1.5 text-xs text-blue-500 font-bold uppercase tracking-wider">
+          <div className="flex items-center gap-1.5 text-xs text-emerald-500 font-bold uppercase tracking-wider">
             <ShieldCheck className="w-4 h-4" />
             <span>Соответствие 217-ФЗ</span>
           </div>

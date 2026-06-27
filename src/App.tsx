@@ -4,7 +4,9 @@ import { Bell, X, Volume2, VolumeX } from 'lucide-react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomeView from './components/HomeView';
+import DocumentsView from './components/DocumentsView';
 import PaymentsView from './components/PaymentsView';
+import InfrastructureView from './components/InfrastructureView';
 import ContactsView from './components/ContactsView';
 import CabinetView from './components/CabinetView';
 import AdminView from './components/AdminView';
@@ -159,8 +161,16 @@ export default function App() {
               />
             )}
 
+            {currentTab === 'documents' && (
+              <DocumentsView onNavigate={setCurrentTab} />
+            )}
+
             {currentTab === 'payments' && (
               <PaymentsView />
+            )}
+
+            {currentTab === 'infrastructure' && (
+              <InfrastructureView />
             )}
 
             {currentTab === 'contacts' && (

@@ -19,54 +19,53 @@ export default function HomeView({ news, stats, onNavigate }: HomeViewProps) {
   };
 
   return (
-    <div id="home_container" className="space-y-8">
+    <div id="home_container" className="space-y-8 animate-fade-in">
       <SEOHead 
         title="СНТ «Альбатрос» — Официальный сайт садоводческого некоммерческого товарищества"
         description="Официальный сайт СНТ «Альбатрос» Рузского городского округа. Последние новости, тарифы, взносы, контакты администрации и личный кабинет садоводов."
-        keywords="СНТ Альбатрос, новости СНТ, Рузский район, Рузский городской округ, взносы, садоводство"
+        keywords="СНТ Альбатрос, новости СНТ, Рузский район, Рузский городского округ, взносы, садоводство"
       />
 
-      {/* Hero section with dynamic image and live stats overview */}
-      <section id="hero_section" className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-slate-900 to-slate-950 text-white p-6 md:p-12 shadow-xl">
-        <div className="absolute inset-0 opacity-25">
+      {/* Hero section with dynamic premium cottage image */}
+      <section id="hero_section" className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-slate-900 to-slate-950 text-white p-8 md:p-14 shadow-md">
+        <div className="absolute inset-0 opacity-40">
           <img 
-            src={`https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80&sig=${imageRefreshKey}`}
+            src={`https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1400&q=80&sig=${imageRefreshKey}`}
             alt="СНТ Альбатрос Ландшафт"
-            className="w-full h-full object-cover transition-all duration-700"
+            className="w-full h-full object-cover transition-all duration-750"
             referrerPolicy="no-referrer"
           />
         </div>
         
-        <div className="relative z-10 max-w-3xl space-y-4">
+        <div className="relative z-10 max-w-3xl space-y-5">
           <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-500/30 px-3.5 py-1 rounded-full text-blue-300 text-xs font-semibold backdrop-blur-md"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="inline-flex items-center gap-2 bg-[#1b4332]/40 border border-emerald-500/30 px-3.5 py-1.5 rounded-full text-emerald-300 text-xs font-semibold backdrop-blur-md"
           >
-            <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-            Официальный сайт товарищества
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            Официальный портал СНТ
           </motion.div>
           
-          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight">
-            СНТ «Альбатрос»
+          <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">
+            Садоводческое Некоммерческое Товарищество «Альбатрос»
           </h1>
-          <p className="text-base md:text-lg text-slate-100/90 max-w-2xl font-light leading-relaxed">
-            Добро пожаловать на цифровой портал СНТ «Альбатрос». Здесь вы можете узнать свежие новости, ознакомиться с официальными документами, сдать показания приборов учёта и оплатить членские взносы онлайн.
+          <p className="text-sm md:text-base text-slate-100/90 max-w-2xl font-light leading-relaxed">
+            Профессиональное управление и забота о территории для вашего комфортного отдыха. Современная цифровая экосистема для удобного взаимодействия садоводов и правления.
           </p>
 
-          <div className="flex flex-wrap gap-3 pt-4">
+          <div className="flex flex-wrap gap-3.5 pt-4">
             <button 
               id="hero_btn_cabinet"
               onClick={() => onNavigate('cabinet')}
-              className="px-6 py-2.5 rounded-xl bg-white text-slate-950 font-semibold hover:bg-slate-50 transition shadow-lg text-sm cursor-pointer"
+              className="px-6 py-3 rounded-xl bg-white text-slate-950 font-bold hover:bg-slate-50 hover:scale-[1.02] transition shadow-md text-xs cursor-pointer"
             >
               Личный кабинет
             </button>
             <button 
               id="hero_btn_payments"
               onClick={() => onNavigate('payments')}
-              className="px-6 py-2.5 rounded-xl bg-blue-800/40 border border-blue-500/40 hover:bg-blue-800/60 transition font-semibold text-sm cursor-pointer"
+              className="px-6 py-3 rounded-xl bg-[#1b4332] hover:bg-[#153527] border border-transparent hover:scale-[1.02] transition font-bold text-xs text-white cursor-pointer shadow-md"
             >
               Оплата взносов
             </button>
@@ -74,7 +73,7 @@ export default function HomeView({ news, stats, onNavigate }: HomeViewProps) {
               id="hero_btn_refresh_img"
               onClick={handleRefreshImage}
               title="Обновить фоновое изображение"
-              className="px-3.5 py-2.5 rounded-xl bg-slate-950/45 border border-slate-500/30 hover:bg-slate-900/60 transition text-xs flex items-center gap-1 cursor-pointer"
+              className="px-4 py-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 transition text-[11px] font-bold flex items-center gap-1.5 cursor-pointer text-white"
             >
               🔄 Фото дня
             </button>
@@ -82,182 +81,193 @@ export default function HomeView({ news, stats, onNavigate }: HomeViewProps) {
         </div>
       </section>
 
-      {/* SNT Statistics Overview Bento-Grid */}
-      <section id="stats_overview" className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div id="stat_plots" className="bg-white border border-gray-100 p-5 rounded-2xl shadow-sm flex flex-col justify-between hover:shadow-md transition">
-          <div className="flex justify-between items-start text-blue-600">
-            <Landmark className="w-6 h-6" />
-            <span className="text-xs font-medium text-gray-400">Участков</span>
+      {/* Bento Grid Action Cards (As seen in design layouts) */}
+      <section id="bento_actions" className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        {/* Card 1: Payments */}
+        <div className="bg-white border border-slate-100 p-6 rounded-2xl shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition">
+          <div className="space-y-2 text-left">
+            <h3 className="text-base font-bold text-slate-900">Оплата взносов</h3>
+            <p className="text-slate-500 text-xs font-light leading-relaxed">
+              Быстрая и безопасная оплата членских и целевых взносов онлайн без комиссии.
+            </p>
           </div>
-          <div className="mt-4">
-            <h3 className="text-2xl font-bold text-gray-900">{stats ? stats.totalPlots : "350"}</h3>
-            <p className="text-xs text-gray-500 mt-1">Всего в реестре</p>
-          </div>
+          <button 
+            onClick={() => onNavigate('payments')}
+            className="w-full py-2.5 bg-[#1b4332] hover:bg-[#153527] text-white font-bold rounded-xl text-xs transition cursor-pointer shadow-sm text-center"
+          >
+            Перейти к оплате
+          </button>
         </div>
 
-        <div id="stat_members" className="bg-white border border-gray-100 p-5 rounded-2xl shadow-sm flex flex-col justify-between hover:shadow-md transition">
-          <div className="flex justify-between items-start text-blue-600">
-            <Shield className="w-6 h-6" />
-            <span className="text-xs font-medium text-gray-400">Членов СНТ</span>
+        {/* Card 2: Documents */}
+        <div className="bg-white border border-slate-100 p-6 rounded-2xl shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition">
+          <div className="space-y-2 text-left">
+            <h3 className="text-base font-bold text-slate-900">Заявления</h3>
+            <p className="text-slate-500 text-xs font-light leading-relaxed">
+              Подать официальное заявление в правление СНТ в электронном виде или скачать бланки.
+            </p>
           </div>
-          <div className="mt-4">
-            <h3 className="text-2xl font-bold text-gray-900">{stats ? stats.totalMembers : "280"}</h3>
-            <p className="text-xs text-gray-500 mt-1">Официально зарегистрировано</p>
-          </div>
+          <button 
+            onClick={() => onNavigate('documents')}
+            className="w-full py-2.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-bold rounded-xl text-xs transition cursor-pointer text-center"
+          >
+            Оформить заявку
+          </button>
         </div>
 
-        <div id="stat_tariffs" className="bg-white border border-gray-100 p-5 rounded-2xl shadow-sm flex flex-col justify-between hover:shadow-md transition">
-          <div className="flex justify-between items-start text-amber-600">
-            <TrendingUp className="w-6 h-6" />
-            <span className="text-xs font-medium text-gray-400">Тариф взноса</span>
+        {/* Card 3: Finances / Balance */}
+        <div className="bg-white border border-slate-100 p-6 rounded-2xl shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition">
+          <div className="space-y-2 text-left">
+            <h3 className="text-base font-bold text-slate-900">Финансы</h3>
+            <p className="text-slate-500 text-xs font-light leading-relaxed">
+              Актуальные отчеты о расходах, сметах и текущий баланс лицевого счета вашего участка.
+            </p>
           </div>
-          <div className="mt-4">
-            <h3 className="text-2xl font-bold text-gray-900">{stats ? `${stats.feePerSotka} ₽` : "1 500 ₽"}</h3>
-            <p className="text-xs text-gray-500 mt-1">За 1 сотку в год</p>
-          </div>
+          <button 
+            onClick={() => onNavigate('cabinet')}
+            className="w-full py-2.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-bold rounded-xl text-xs transition cursor-pointer text-center"
+          >
+            Смотреть баланс
+          </button>
         </div>
 
-        <div id="stat_power" className="bg-white border border-gray-100 p-5 rounded-2xl shadow-sm flex flex-col justify-between hover:shadow-md transition">
-          <div className="flex justify-between items-start text-purple-600">
-            <Info className="w-6 h-6" />
-            <span className="text-xs font-medium text-gray-400">Мощность ТП</span>
-          </div>
-          <div className="mt-4">
-            <h3 className="text-2xl font-bold text-gray-900">{stats ? stats.tpPower : "250 кВт"}</h3>
-            <p className="text-xs text-gray-500 mt-1">Энергосистема товарищества</p>
-          </div>
-        </div>
       </section>
 
-      {/* Main Content Layout - News & Interactive Widgets */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {/* Main Contents layout: News vs Sidebar Widgets */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
-        {/* News Column (Left) */}
-        <div id="news_column" className="lg:col-span-2 space-y-6">
+        {/* Left Column (8 Cols): News list */}
+        <div id="news_column" className="lg:col-span-8 space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-              <span className="w-1.5 h-6 bg-blue-600 rounded-full"></span>
-              Новости и важные оповещения
+            <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-1.5 h-6 bg-[#1b4332] rounded-full"></span>
+              Важные новости и объявления
             </h2>
             <button 
               id="btn_all_news"
               onClick={() => onNavigate('cabinet')}
-              className="text-xs text-blue-600 font-semibold hover:underline"
+              className="text-xs text-[#1b4332] font-bold hover:underline"
             >
-              Архив новостей →
+              Все новости →
             </button>
           </div>
 
-          <div className="space-y-4">
-            {news.map((item) => (
-              <motion.article 
-                key={item.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={`p-5 rounded-2xl border transition hover:border-blue-300 hover:shadow-sm ${
-                  item.isImportant 
-                    ? 'bg-red-50/50 border-red-200' 
-                    : 'bg-white border-gray-100'
-                }`}
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-gray-400" />
-                    <span className="text-xs text-gray-500 font-medium">{item.date}</span>
+          <div className="space-y-4 text-left">
+            {news.map((item, idx) => {
+              // Accent borders matching the design mockup (red, green, blue cycle)
+              const borders = [
+                'border-l-red-500 hover:border-red-500/40',
+                'border-l-emerald-600 hover:border-emerald-600/40',
+                'border-l-blue-500 hover:border-blue-500/40'
+              ];
+              const borderClass = borders[idx % borders.length];
+
+              // Parse date to badges (e.g. "10 Мая 2024" -> Day: "10", Month: "МАЯ")
+              const dateParts = item.date.split(' ');
+              const day = dateParts[0] || '10';
+              const month = (dateParts[1] || 'МАЯ').toUpperCase();
+
+              return (
+                <motion.article 
+                  key={item.id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.05 }}
+                  className={`p-5 bg-white rounded-2xl border border-slate-100 border-l-4 ${borderClass} transition hover:shadow-sm flex gap-4 md:gap-5 items-start`}
+                >
+                  {/* Styled Date Badge on the Left */}
+                  <div className="w-14 h-14 bg-slate-50 border border-slate-100 rounded-xl shrink-0 flex flex-col items-center justify-center text-center">
+                    <span className="text-sm font-black text-slate-800 leading-none">{day}</span>
+                    <span className="text-[8px] font-black text-slate-400 mt-1 uppercase tracking-wide leading-none">{month}</span>
                   </div>
-                  {item.isImportant && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-red-100 text-red-700 text-[10px] font-bold uppercase tracking-wider">
-                      <AlertCircle className="w-3 h-3" /> Важно
-                    </span>
-                  )}
-                </div>
-                
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  {item.title}
-                </h3>
-                
-                <p className="text-gray-600 text-sm leading-relaxed mb-1">
-                  {item.content}
-                </p>
-              </motion.article>
-            ))}
+
+                  <div className="space-y-1.5 flex-grow">
+                    <div className="flex items-center justify-between gap-2">
+                      <h3 className="text-base font-bold text-slate-900 group-hover:text-[#1b4332] transition">
+                        {item.title}
+                      </h3>
+                      {item.isImportant && (
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-red-50 text-red-700 text-[9px] font-bold uppercase tracking-wider">
+                          Срочно
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-slate-500 text-xs font-light leading-relaxed">
+                      {item.content}
+                    </p>
+                  </div>
+                </motion.article>
+              );
+            })}
           </div>
         </div>
 
-        {/* Sidebar Widgets Column (Right) */}
-        <div id="sidebar_widgets" className="space-y-6">
+        {/* Right Column (4 Cols): Widgets */}
+        <div id="sidebar_widgets" className="lg:col-span-4 space-y-6 text-left">
           
-          {/* SNT Information Block */}
-          <div id="widget_contacts" className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm space-y-4">
-            <h3 className="font-bold text-gray-900 flex items-center gap-2 border-b border-gray-50 pb-3">
-              <Landmark className="w-5 h-5 text-blue-600" />
-              Правление СНТ
-            </h3>
-            
-            <div className="space-y-3.5 text-sm">
-              <div>
-                <p className="text-xs text-gray-400">Председатель правления:</p>
-                <p className="font-semibold text-gray-800">Иванов Игорь Игоревич</p>
-              </div>
-              
-              <div>
-                <p className="text-xs text-gray-400">Телефон правления:</p>
-                <a href="tel:+74951234567" className="font-semibold text-blue-600 hover:underline">
-                  +7 (495) 123-45-67
-                </a>
-              </div>
-
-              <div>
-                <p className="text-xs text-gray-400">Приёмные часы:</p>
-                <p className="font-medium text-gray-700">Каждая суббота с 11:00 до 15:00</p>
-              </div>
+          {/* SNT in figures - Dark Slate/Navy layout */}
+          <div id="widget_figures" className="bg-[#142d53] text-white p-6 rounded-3xl shadow-sm space-y-5 relative overflow-hidden">
+            <div className="absolute -right-10 -bottom-10 opacity-5">
+              <Landmark className="w-32 h-32 text-white" />
             </div>
 
-            <button 
-              id="btn_view_contacts"
-              onClick={() => onNavigate('contacts')}
-              className="w-full py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 font-medium rounded-xl text-xs transition cursor-pointer"
-            >
-              Посмотреть полные контакты
-            </button>
-          </div>
-
-          {/* Location & Navigation Block */}
-          <div id="widget_location" className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm space-y-4">
-            <h3 className="font-bold text-gray-900 flex items-center gap-2 border-b border-gray-50 pb-3">
-              <MapPin className="w-5 h-5 text-blue-600" />
-              Как нас найти
+            <h3 className="font-bold text-white text-base border-b border-white/10 pb-3">
+              СНТ в цифрах
             </h3>
 
-            <div className="rounded-xl overflow-hidden relative h-40 border border-gray-100 shadow-inner">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-0.5">
+                <span className="text-xl font-black text-emerald-400 font-mono block">150</span>
+                <span className="text-[10px] text-slate-300 font-light block leading-tight">Участков в реестре</span>
+              </div>
+              <div className="space-y-0.5">
+                <span className="text-xl font-black text-emerald-400 font-mono block">45 Га</span>
+                <span className="text-[10px] text-slate-300 font-light block leading-tight">Общая площадь</span>
+              </div>
+              <div className="space-y-0.5">
+                <span className="text-xl font-black text-emerald-400 font-mono block">100%</span>
+                <span className="text-[10px] text-slate-300 font-light block leading-tight">Газификация</span>
+              </div>
+              <div className="space-y-0.5">
+                <span className="text-xl font-black text-emerald-400 font-mono block">24/7</span>
+                <span className="text-[10px] text-slate-300 font-light block leading-tight">Охрана и СКУД</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Location & Navigation widget */}
+          <div id="widget_location_premium" className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm space-y-4">
+            <h3 className="font-bold text-slate-900 text-sm flex items-center gap-2 border-b border-slate-50 pb-3">
+              <MapPin className="w-4.5 h-4.5 text-[#1b4332]" />
+              Расположение СНТ
+            </h3>
+
+            <div className="rounded-xl overflow-hidden relative h-44 border border-slate-150 shadow-inner">
               <img 
                 src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=400&q=80"
                 alt="Статическая карта расположения"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover brightness-95"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-slate-950/20 flex items-center justify-center p-2 text-center">
-                <span className="bg-white/95 text-slate-950 text-xs px-3 py-1.5 rounded-full font-bold shadow flex items-center gap-1.5">
-                  <Navigation className="w-3.5 h-3.5 text-blue-600" /> Рузский р-н, дер. Старо
+              <div className="absolute inset-0 bg-slate-900/10 flex items-center justify-center p-2 text-center">
+                <span className="bg-white text-slate-900 text-[10px] px-3 py-1.5 rounded-full font-bold shadow-md flex items-center gap-1.5">
+                  <Navigation className="w-3 h-3 text-[#1b4332] animate-pulse" /> Рузский г.о., д. Петрищево
                 </span>
               </div>
             </div>
 
-            <div className="space-y-2 text-xs text-gray-600">
-              <p className="flex gap-2">
-                <span className="font-bold text-gray-800">На авто:</span> 85-й км Минского шоссе, далее 12 км в сторону г. Руза.
-              </p>
-              <p className="flex gap-2">
-                <span className="font-bold text-gray-800">Электричкой:</span> Белорусское направление до ст. «Дорохово», далее автобус №22.
-              </p>
+            <div className="space-y-1 text-[11px] text-slate-500 leading-relaxed font-light">
+              <p>📍 Московская область, Рузский г.о., д. Петрищево</p>
+              <p>🚗 50 км от МКАД по Новорижскому или Минскому шоссе</p>
             </div>
 
             <button 
               id="btn_route_planning"
               onClick={() => onNavigate('contacts')}
-              className="w-full py-2 bg-gray-50 hover:bg-gray-100 text-gray-700 font-medium rounded-xl text-xs transition flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-2.5 bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-150 font-bold rounded-xl text-xs transition flex items-center justify-center gap-2 cursor-pointer shadow-sm"
             >
-              <Map className="w-3.5 h-3.5 text-gray-500" /> Интерактивный маршрут
+              <Map className="w-3.5 h-3.5 text-slate-400" /> Схема проезда
             </button>
           </div>
 
